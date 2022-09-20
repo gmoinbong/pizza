@@ -1,6 +1,14 @@
 import React from 'react';
 
 function Sort() {
+  const [TogglePopup, setTogglePopup] = React.useState(false);
+  const [activeVariableName, setActiveVariableName] = React.useState(0);
+  const sortVariableName = ['популярности', 'цене', 'алфавиту'];
+  const sortActiveName = sortVariableName[activeVariableName];
+  const onClickActiveName = (id) => {
+    setActiveVariableName(id);
+    setTogglePopup(false);
+  };
   return (
     <div className="sort">
       <div className="sort__label">
@@ -16,15 +24,22 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setTogglePopup(!TogglePopup)}>{sortActiveName}</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {TogglePopup && (
+        <div className="sort__popup">
+          <ul>
+            {sortVariableName.map((name, index) => (
+              <li
+                key={index}
+                onClick={() => onClickActiveName(index)}
+                className={activeVariableName === index ? 'active' : ''}>
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
