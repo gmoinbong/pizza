@@ -3,7 +3,7 @@ import React from 'react';
 function Sort() {
   const [TogglePopup, setTogglePopup] = React.useState(false);
   const [activeVariableName, setActiveVariableName] = React.useState(0);
-  const sortVariableName = ['популярности', 'цене', 'алфавиту'];
+  const sortVariableName = ['популярністю', 'ціною', 'алфавітом'];
   const sortActiveName = sortVariableName[activeVariableName];
   const onClickActiveName = (id) => {
     setActiveVariableName(id);
@@ -23,7 +23,7 @@ function Sort() {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>Сортування за:</b>
         <span onClick={() => setTogglePopup(!TogglePopup)}>{sortActiveName}</span>
       </div>
       {TogglePopup && (

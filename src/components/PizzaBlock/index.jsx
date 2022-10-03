@@ -1,11 +1,10 @@
 import React from 'react';
-
 function PizzaBlock({ price, title, imageUrl, types, sizes }) {
   const [pizzaCount, setPizzaCount] = React.useState(0);
   const [activeTypePizza, setActiveTypePizza] = React.useState(0);
   const [activeSizePizza, setActiveSizePizza] = React.useState(0);
 
-  const typeNames = ['тонкое', 'традиционное'];
+  const typeNames = ['Тонке', 'Традиційне'];
 
   return (
     <div className="pizza-block">
@@ -49,7 +48,7 @@ function PizzaBlock({ price, title, imageUrl, types, sizes }) {
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span>Додати</span>
           <i>{pizzaCount}</i>
         </button>
       </div>
