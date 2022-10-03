@@ -15,6 +15,7 @@ function Home() {
         setIsLoading(false);
       }),
     );
+    window.scrollTo(0, 0);
   }, []);
   return (
     <>
