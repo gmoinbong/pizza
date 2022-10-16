@@ -1,12 +1,19 @@
 import React from 'react';
 
-function Sort() {
+function Sort({ value, OnClickSort }) {
   const [TogglePopup, setTogglePopup] = React.useState(false);
-  const [activeVariableName, setActiveVariableName] = React.useState(0);
-  const sortVariableName = ['популярністю', 'ціною', 'алфавітом'];
-  const sortActiveName = sortVariableName[activeVariableName];
-  const onClickActiveName = (id) => {
-    setActiveVariableName(id);
+
+  const list = [
+    { name: 'популярністю', sortProperty: '-rating', description: '(Зростання)' },
+    { name: 'популярністю', sortProperty: 'rating', description: '(Спадання)' },
+    { name: 'ціною', sortProperty: '-price', description: '(Зростання)' },
+    { name: 'ціною', sortProperty: 'price', description: '(Спадання)' },
+    { name: 'алфавітом', sortProperty: '-title', description: '(Зростання)' },
+    { name: 'алфавітом', sortProperty: 'title', description: '(Спадання)' },
+  ];
+
+  const onClickListItem = (i) => {
+    OnClickSort(i);
     setTogglePopup(false);
   };
   return (
@@ -24,17 +31,17 @@ function Sort() {
           />
         </svg>
         <b>Сортування за:</b>
-        <span onClick={() => setTogglePopup(!TogglePopup)}>{sortActiveName}</span>
+        <span onClick={() => setTogglePopup(!TogglePopup)}>{value.name}</span>
       </div>
       {TogglePopup && (
         <div className="sort__popup">
           <ul>
-            {sortVariableName.map((name, index) => (
+            {list.map((objectList, i, description) => (
               <li
-                key={index}
-                onClick={() => onClickActiveName(index)}
-                className={activeVariableName === index ? 'active' : ''}>
-                {name}
+                key={i}
+                onClick={() => onClickListItem(objectList)}
+                className={value.sortProperty === objectList.sortProperty ? 'active' : ''}>
+                {objectList.name} {objectList.description}
               </li>
             ))}
           </ul>
